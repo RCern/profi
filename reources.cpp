@@ -25,7 +25,12 @@ std::vector<int> return_table_from_file(std::string path_name) {
 	return vec_int;
 }
 
-double RMSE(std::vector<double> diff) {
+double RMSE(std::vector<int> org, std::vector<double> pred) {
+	std::vector<double> diff;
+	for (int i = 0; i < pred.size(); i++)
+	{
+		diff.push_back(pred[i] - org[i]);
+	}
 	double sumsquared = 0;
 	for (int i = 0; i < diff.size(); i++)
 	{
@@ -47,4 +52,14 @@ std::vector<int> return_rand_table(int size) {
 int generate_rand() {
 
 	return rand() % (120 - 80 + 1) + 80;
+}
+
+double SmallestRMSE(std::vector<double>rmse)
+{
+	double small = rmse[0];
+	int i;
+	for (i = 0; i < rmse.size(); i++)
+		if (!rmse[i] == 0 && rmse[i] < small)
+			small = rmse[i];
+	return small;
 }

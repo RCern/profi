@@ -1,6 +1,6 @@
-#include "Header.h"
+#include"Header.h"
 
-double holts_model(std::vector<int> vec, double alpha, double beta) {
+double holts_model_t(std::vector<int> vec, double alpha, double beta, int t) {
 
 	// for original data 
 	std::vector<double> F;
@@ -12,13 +12,13 @@ double holts_model(std::vector<int> vec, double alpha, double beta) {
 	{
 		F.push_back(alpha*vec[i] + (1 - alpha) *(F[i - 1] + S[i - 1]));
 		S.push_back(beta*(F[i] - F[i - 1]) + (1 - beta)* S[i - 1]);
-		Ypred.push_back(S[i - 1] + F[i - 1]);
+		Ypred.push_back(t*S[i - 1] + F[i - 1]);
 	}
 
 	std::cout << "Ypred:" << "\n" << "\n";
 	affichage(Ypred);
 
-	std::cout << "RMSE " << RMSE(vec, Ypred) << "\n" << "\n";
-
+	
+	std::cout << "RMSE " << RMSE(vec,Ypred) << "\n" << "\n";
 	return RMSE(vec, Ypred);
 }
