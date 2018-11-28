@@ -63,3 +63,10 @@ double SmallestRMSE(std::vector<double>rmse)
 			small = rmse[i];
 	return small;
 }
+
+int display_smallest_rmse(std::vector<double> rmse) {
+	double temp = SmallestRMSE(rmse);
+	int pos = std::distance(rmse.begin(), std::find(rmse.begin(),rmse.end(),temp));
+	std::cout << "\npos = \n" << pos;
+	return pos;
+}
