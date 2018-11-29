@@ -15,7 +15,7 @@ double holts_model_t(std::vector<int> vec, double alpha, double beta, int t) {
 		Ypred.push_back(t*S[i - 1] + F[i - 1]);
 	}
 
-	std::cout << "\nRMSE for Holt's model with horizon : "<< t <<" alpha: " << alpha << " beta : " << beta << " RMSE => " << RMSE(vec, Ypred) << "\n\n";
+	std::cout << "\nRMSE for Holt's model with horizon : "<< t <<" alpha: " << alpha << " beta : " << beta << " RMSE => " << RMSE(vec, Ypred);
 	return RMSE(vec, Ypred);
 }
 
@@ -39,6 +39,5 @@ double holts_model_t_diff(std::vector<int> vec, double alpha, double beta, int t
 	{
 		diff.push_back(Ypred[i] - vec[i]);
 	}
-	std::cout << "\nFor differnces\n";
 	return holts_model_t(diff,alpha,beta,t);
 }

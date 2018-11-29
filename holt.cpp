@@ -15,7 +15,7 @@ double holts_model(std::vector<int> vec, double alpha, double beta) {
 		Ypred.push_back(S[i - 1] + F[i - 1]);
 	}
 
-	std::cout << "\nRMSE for Holt's model with alpha: "<< alpha << " beta : "<< beta << " RMSE => " <<RMSE(vec, Ypred) << "\n\n";
+	std::cout << "RMSE for Holt's model with alpha: "<< alpha << " beta : "<< beta << " RMSE => " <<RMSE(vec, Ypred) << "\n";
 
 	return RMSE(vec, Ypred);
 }
@@ -40,6 +40,5 @@ double holts_model_diff(std::vector<int> vec, double alpha, double beta) {
 	{
 		diff.push_back(Ypred[i] - vec[i]);
 	}
-	std::cout << "\nFor differnces\n";
 	return holts_model(diff, alpha, beta);
 }

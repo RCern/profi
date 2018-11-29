@@ -40,3 +40,9 @@ std::vector<double> MovingAveragek(std::vector<int> vec, int k);
 double MovingAverage(std::vector<int>vec);
 
 double SmallestRMSE(std::vector<double>rmse);
+
+void affichageInt(std::vector<int> a);
+
+void DeclareSmallestRMSE(std::vector<double>rmse, double smallest);
+
+void PrintSmallestRMSE(std::vector<double>rmse, int i);
