@@ -41,3 +41,32 @@ double holts_model_t_diff(std::vector<int> vec, double alpha, double beta, int t
 	}
 	return holts_model_t(diff,alpha,beta,t);
 }
+
+void PrintAllHolt(std::vector<int>c)
+{
+	std::vector<double>rmse;
+	std::cout << "For Original Data\ntau=1\n";
+	rmse.push_back(holts_model_t(c, 0.1, 0.9, 1));
+	rmse.push_back(holts_model_t(c, 0.9, 0.1, 1));
+	rmse.push_back(holts_model_t(c, 0.4, 0.6, 1));
+	std::cout << "\ntau=2";
+	rmse.push_back(holts_model_t(c, 0.1, 0.9, 2));
+	rmse.push_back(holts_model_t(c, 0.9, 0.1, 2));
+	rmse.push_back(holts_model_t(c, 0.4, 0.6, 2));
+	std::cout << "\ntau=3";
+	rmse.push_back(holts_model_t(c, 0.1, 0.9, 3));
+	rmse.push_back(holts_model_t(c, 0.9, 0.1, 3));
+	rmse.push_back(holts_model_t(c, 0.4, 0.6, 3));
+	std::cout << "\nFor Differences\ntau=1";
+	rmse.push_back(holts_model_t_diff(c, 0.1, 0.9, 1));
+	rmse.push_back(holts_model_t_diff(c, 0.9, 0.1, 1));
+	rmse.push_back(holts_model_t_diff(c, 0.4, 0.6, 1));
+	std::cout << "\ntau=2";
+	rmse.push_back(holts_model_t_diff(c, 0.1, 0.9, 2));
+	rmse.push_back(holts_model_t_diff(c, 0.9, 0.1, 2));
+	rmse.push_back(holts_model_t_diff(c, 0.4, 0.6, 2));
+	std::cout << "\ntau=3";
+	rmse.push_back(holts_model_t_diff(c, 0.1, 0.9, 3));
+	rmse.push_back(holts_model_t_diff(c, 0.9, 0.1, 3));
+	rmse.push_back(holts_model_t_diff(c, 0.4, 0.6, 3));
+}

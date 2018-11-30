@@ -65,6 +65,55 @@ int generate_rand() {
 	return rand() % (120 - 80 + 1) + 80;
 }
 
+void PrintAllRMSE(std::vector<int>c, int serie)
+{
+	int value;
+	double SmRMSE;
+	std::vector<double>rmse;
+	if (serie == 1)
+	{
+		rmse.push_back(zero_hold(c));
+		std::cout << "\nRMSE for Zero-order-hold method RMSE => " << rmse[rmse.size() - 1] << "\n";
+		rmse.push_back(MovingAverage(c));
+		std::cout << "RMSE for Moving average method RMSE => " << rmse[rmse.size() - 1] << "\n";
+	}
+	else
+	{
+		do
+		{
+			std::cout << "Please enter a value for moving average k:\n";
+			std::cin >> value;
+		} while (value<0 || value>c.size());
+		rmse.push_back(zero_hold(c));
+		std::cout << "\nRMSE for Zero-order-hold method RMSE => " << rmse[rmse.size() - 1] << "\n";
+		rmse.push_back(RMSE(c, MovingAveragek(c, value)));
+		std::cout << "RMSE for Moving average method RMSE => " << rmse[rmse.size() - 1] << "\n";
+	}
+	rmse.push_back(holts_model(c, 0.1, 0.9));
+	rmse.push_back(holts_model(c, 0.9, 0.1));
+	rmse.push_back(holts_model(c, 0.4, 0.6));
+	rmse.push_back(holts_model_t(c, 0.1, 0.9, 2));
+	rmse.push_back(holts_model_t(c, 0.9, 0.1, 2));
+	rmse.push_back(holts_model_t(c, 0.4, 0.6, 2));
+	rmse.push_back(holts_model_t(c, 0.1, 0.9, 3));
+	rmse.push_back(holts_model_t(c, 0.9, 0.1, 3));
+	rmse.push_back(holts_model_t(c, 0.4, 0.6, 3));
+
+	std::cout << "\nFor differences\n";
+
+	rmse.push_back(holts_model_diff(c, 0.1, 0.9));
+	rmse.push_back(holts_model_diff(c, 0.9, 0.1));
+	rmse.push_back(holts_model_diff(c, 0.4, 0.6));
+	rmse.push_back(holts_model_t_diff(c, 0.1, 0.9, 2));
+	rmse.push_back(holts_model_t_diff(c, 0.9, 0.1, 2));
+	rmse.push_back(holts_model_t_diff(c, 0.4, 0.6, 2));
+	rmse.push_back(holts_model_t_diff(c, 0.1, 0.9, 3));
+	rmse.push_back(holts_model_t_diff(c, 0.9, 0.1, 3));
+	rmse.push_back(holts_model_t_diff(c, 0.4, 0.6, 3));
+	SmRMSE = SmallestRMSE(rmse);
+	DeclareSmallestRMSE(rmse, SmRMSE);
+}
+
 void PrintSmallestRMSE(std::vector<double>rmse,int i)
 {
 	std::cout << "\n\nThe best method giving the smallest RMSE is ";

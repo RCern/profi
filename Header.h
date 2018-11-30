@@ -46,3 +46,9 @@ void affichageInt(std::vector<int> a);
 void DeclareSmallestRMSE(std::vector<double>rmse, double smallest);
 
 void PrintSmallestRMSE(std::vector<double>rmse, int i);
+
+void PrintAllRMSE(std::vector<int>c, int serie);
+
+void PrintAllHolt(std::vector<int>);
+
+void PrintHolt(std::vector<int> c);

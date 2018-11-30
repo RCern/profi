@@ -42,3 +42,17 @@ double holts_model_diff(std::vector<int> vec, double alpha, double beta) {
 	}
 	return holts_model(diff, alpha, beta);
 }
+
+void PrintHolt(std::vector<int> c)
+{
+	std::vector<double>rmse;
+	rmse.push_back(holts_model(c, 0.1, 0.9));
+	rmse.push_back(holts_model(c, 0.9, 0.1));
+	rmse.push_back(holts_model(c, 0.4, 0.6));
+
+	std::cout << "\nFor differences\n";
+
+	rmse.push_back(holts_model_diff(c, 0.1, 0.9));
+	rmse.push_back(holts_model_diff(c, 0.9, 0.1));
+	rmse.push_back(holts_model_diff(c, 0.4, 0.6));
+}
